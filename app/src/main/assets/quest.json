@@ -1,0 +1,561 @@
+[
+ {
+  "number_quest":1,
+  "quest_text":"Длительность кровотечения",
+  "answers":[
+   {
+    "number_answer":1,
+    "text":"До 6 часов"
+   },
+   {
+    "number_answer":2,
+    "text":"7 - 24 часа(-ов)"
+   },
+   {
+    "number_answer":3,
+    "text":"2-е сутки"
+   },
+   {
+    "number_answer":4,
+    "text":"Свыше 2-х суток"
+   }
+  ]
+ },
+
+ {
+  "number_quest":2,
+  "quest_text":"Анамнез",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Сведений нет"
+   },
+   {
+    "number_answer":1,
+    "text":"Гастритический"
+   },
+   {
+    "number_answer":2,
+    "text":"Язвенный"
+   },
+   {
+    "number_answer":3,
+    "text":"Кровоточащая язва"
+   },
+   {
+    "number_answer":4,
+    "text":"Повторные язвенные кровотечения"
+   },
+   {
+    "number_answer":5,
+    "text":"Анамнез отсутствует"
+   }
+  ]
+ },
+
+ {
+  "number_quest":3,
+  "quest_text":"Операции в анамнезе",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Не было"
+   },
+   {
+    "number_answer":1,
+    "text":"Ушивание прободной язвы"
+   },
+   {
+    "number_answer":2,
+    "text":"Паллиативная операция по поводу кровоточащей язвы"
+   },
+   {
+    "number_answer":3,
+    "text":"Радикальная операция по поводу кровоточащей язвы"
+   }
+  ]
+ },
+
+ {
+  "number_quest":4,
+  "quest_text":"Способствующие факторы",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Не было"
+   },
+   {
+    "number_answer":1,
+    "text":"Употребеление лекарств накануне (гормоны, салицилаты и др.)"
+   },
+   {
+    "number_answer":2,
+    "text":"Алкогольные напитки"
+   },
+   {
+    "number_answer":3,
+    "text":"Тяжелая физическая или нервно-психическая нагрузка"
+   }
+  ]
+ },
+
+ {
+  "number_quest":5,
+  "quest_text":"Рвота кровью",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Нет"
+   },
+   {
+    "number_answer":1,
+    "text":"Однократная"
+   },
+   {
+    "number_answer":2,
+    "text":"Повторная"
+   }
+  ]
+ },
+
+ {
+  "number_quest":6,
+  "quest_text":"Мелена",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Нет"
+   },
+   {
+    "number_answer":1,
+    "text":"Однократная"
+   },
+   {
+    "number_answer":2,
+    "text":"Повторная"
+   },
+   {
+    "number_answer":3,
+    "text":"Оформленный черный кал"
+   }
+  ]
+ },
+
+ {
+  "number_quest":7,
+  "quest_text":"Коллапс",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Не было"
+   },
+   {
+    "number_answer":1,
+    "text":"Однократный"
+   },
+   {
+    "number_answer":2,
+    "text":"Повторный"
+   }
+  ]
+ },
+
+ {
+  "number_quest":8,
+  "quest_text":"Потеря сознания",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Не было"
+   },
+   {
+    "number_answer":1,
+    "text":"Однократная"
+   },
+   {
+    "number_answer":2,
+    "text":"Повторная"
+   }
+  ]
+ },
+
+ {
+  "number_quest":9,
+  "quest_text":"Лечебные мероприятия до настоящего осмотра",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Не было"
+   },
+   {
+    "number_answer":1,
+    "text":"Инфузионная терапия"
+   },
+   {
+    "number_answer":2,
+    "text":"Гемотрансфузия"
+   }
+  ]
+ },
+
+ {
+  "number_quest":10,
+  "quest_text":"Состояние больного во время осмотра",
+  "answers":[
+   {
+    "number_answer":1,
+    "text":"Удовлетворительное"
+   },
+   {
+    "number_answer":2,
+    "text":"Средней тяжести"
+   },
+   {
+    "number_answer":3,
+    "text":"Тяжелое"
+   }
+  ]
+ },
+
+ {
+  "number_quest":11,
+  "quest_text":"Пульс",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Input_field"
+   }
+  ]
+ },
+
+ {
+  "number_quest":12,
+  "quest_text":"АД",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Input_field"
+   }
+  ]
+ },
+
+ {
+  "number_quest":13,
+  "quest_text":"ДЦК",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Input_field"
+   }
+  ]
+ },
+
+ {
+  "number_quest":14,
+  "quest_text":"ДЦК не определяли?",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Не определяли"
+   },
+   {
+    "number_answer":1,
+    "text":"Определяли"
+   }
+  ]
+ },
+
+ {
+  "number_quest":15,
+  "quest_text":"Эритроциты",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Input_field"
+   }
+  ]
+ },
+
+ {
+  "number_quest":16,
+  "quest_text":"Гемоглобин",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Input_field"
+   }
+  ]
+ },
+
+ {
+  "number_quest":17,
+  "quest_text":"Локализация язвы",
+  "answers":[
+   {
+    "number_answer":1,
+    "text":"Субкардинальная"
+   },
+   {
+    "number_answer":2,
+    "text":"Угол желудка, малая кривизна"
+   },
+   {
+    "number_answer":3,
+    "text":"Пилороантральная"
+   },
+   {
+    "number_answer":4,
+    "text":"Тело"
+   },
+   {
+    "number_answer":5,
+    "text":"12 п. кишка"
+   },
+   {
+    "number_answer":6,
+    "text":"Прочее"
+   }
+  ]
+ },
+
+ {
+  "number_quest":18,
+  "quest_text":"Размер язвы",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Input_field"
+   }
+  ]
+ },
+
+ {
+  "number_quest":19,
+  "quest_text":"Состояние язвенной поверхности",
+  "answers":[
+   {
+    "number_answer":1,
+    "text":"Фибрин"
+   },
+   {
+    "number_answer":2,
+    "text":"Красный тромб"
+   },
+   {
+    "number_answer":3,
+    "text":"Желтый тромб"
+   },
+   {
+    "number_answer":4,
+    "text":"Вкрапление тромбированных сосудов"
+   },
+   {
+    "number_answer":5,
+    "text":"Красный сгусток крови"
+   },
+   {
+    "number_answer":6,
+    "text":"Имеется кровотечение"
+   }
+  ]
+ },
+
+ {
+  "number_quest":20,
+  "quest_text":"Содержимое желудка и 12-ти перстной кишки",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Нет"
+   },
+   {
+    "number_answer":1,
+    "text":"Слизь, желудочный сок"
+   },
+   {
+    "number_answer":2,
+    "text":"Редуцированная кровь в желудке или ДНК"
+   },
+   {
+    "number_answer":3,
+    "text":"Свежая кровь (примесь)"
+   },
+   {
+    "number_answer":4,
+    "text":"Кровь выделяется каплями"
+   },
+   {
+    "number_answer":5,
+    "text":"Свежая кровь (сплошь)"
+   }
+  ]
+ },
+
+ {
+  "number_quest":21,
+  "quest_text":"Деформация привратника и 12-ти перстной кишки",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Нет"
+   },
+   {
+    "number_answer":1,
+    "text":"Имеется"
+   }
+  ]
+ },
+
+ {
+  "number_quest":22,
+  "quest_text":"Группа крови",
+  "answers":[
+   {
+    "number_answer":1,
+    "text":"0 (1)"
+   },
+   {
+    "number_answer":2,
+    "text":"A (2)"
+   },
+   {
+    "number_answer":3,
+    "text":"B (3)"
+   },
+   {
+    "number_answer":4,
+    "text":"AB (4)"
+   }
+  ]
+ },
+
+ {
+  "number_quest":23,
+  "quest_text":"Частота дыхания",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Input_field"
+   }
+  ]
+ },
+
+ {
+  "number_quest":24,
+  "quest_text":"Тяжесть кровопотери",
+  "answers":[
+   {
+    "number_answer":1,
+    "text":"Легкая"
+   },
+   {
+    "number_answer":2,
+    "text":"Средняя"
+   },
+   {
+    "number_answer":3,
+    "text":"Тяжелая"
+   }
+  ]
+ },
+
+ {
+  "number_quest":25,
+  "quest_text":"Степень активности кровотечения",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"1-я"
+   },
+   {
+    "number_answer":1,
+    "text":"2 A"
+   },
+   {
+    "number_answer":2,
+    "text":"2 B"
+   },
+   {
+    "number_answer":3,
+    "text":"3 A"
+   },
+   {
+    "number_answer":4,
+    "text":"3 B"
+   },
+   {
+    "number_answer":5,
+    "text":"4 A"
+   },
+   {
+    "number_answer":6,
+    "text":"4 B"
+   }
+  ]
+ },
+
+ {
+  "number_quest":26,
+  "quest_text":"Сопутствующая патология",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Нет"
+   },
+   {
+    "number_answer":1,
+    "text":"Компенсированная"
+   },
+   {
+    "number_answer":2,
+    "text":"Декомпенсированная"
+   }
+  ]
+ },
+
+ {
+  "number_quest":27,
+  "quest_text":"Возраст",
+  "answers":[
+   {
+    "number_answer":1,
+    "text":"До 20-ти лет"
+   },
+   {
+    "number_answer":2,
+    "text":"21 - 30"
+   },
+   {
+    "number_answer":3,
+    "text":"31 - 40"
+   },
+   {
+    "number_answer":4,
+    "text":"41 - 50"
+   },
+   {
+    "number_answer":5,
+    "text":"51 - 60"
+   },
+   {
+    "number_answer":6,
+    "text":"Старше 60"
+   }
+  ]
+ },
+
+ {
+  "number_quest":28,
+  "quest_text":"Пол",
+  "answers":[
+   {
+    "number_answer":1,
+    "text":"Мужчина"
+   },
+   {
+    "number_answer":2,
+    "text":"Женщина"
+   }
+  ]
+ }
+]
