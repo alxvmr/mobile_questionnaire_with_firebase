@@ -1,13 +1,20 @@
 package com.example.applicationquestionnairesgmu;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Layout;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -54,6 +61,9 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 if (q.answers.size() > 1){ // radio-button
                     createRadioButton(q.answers, layout, number_question);
                 }
+                else if (q.answers.size() == 1){ // edit text
+                    createEditText(layout, number_question);
+                }
             }
 
         } catch (IOException e) {
@@ -88,5 +98,38 @@ public class QuestionnaireActivity extends AppCompatActivity {
         }
 
         layout.addView(rg);
+    }
+
+    @SuppressLint("ResourceAsColor")
+    private void createEditText(LinearLayout layout, Integer card_number){
+        EditText editText = new EditText(this);
+        int height = (int) getResources().getDimension(R.dimen.edit_text_height);
+
+        LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                height);
+        llp.setMargins(dpToPx(10), dpToPx(10), 0, 0);
+        editText.setLayoutParams(llp);
+        editText.setBackgroundResource(R.drawable.custom_edittext);
+        editText.setCompoundDrawablePadding(dpToPx(8));
+        editText.setHint("Введите значение");
+        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+        editText.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
+        editText.setTextColor(R.color.black);
+        //editText.getBackground().mutate().setColorFilter(R.color.cardview_dark_background), PorterDuff.Mode.SRC_ATOP);
+        int id = View.generateViewId();
+        editText.setId(id);
+
+        layout.addView(editText);
+    }
+
+    public static int dpToPx(int dp)
+    {
+        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+    }
+
+    public static int pxToDp(int px)
+    {
+        return (int) (px / Resources.getSystem().getDisplayMetrics().density);
     }
 }
