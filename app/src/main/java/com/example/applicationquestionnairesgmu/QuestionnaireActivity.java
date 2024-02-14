@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.LinearLayout;
@@ -80,10 +81,8 @@ public class QuestionnaireActivity extends AppCompatActivity {
             rb[i].setButtonTintList(ColorStateList.valueOf(getColor(R.color.purple)));
             rb[i].setText(answersList.get(i).text);
 
-            String id = "card_" + card_number.toString() + "_rb_" + i.toString();
-            int resID = getResources().getIdentifier(id, "id", getPackageName());
-            rb[i].setId(resID);
-            //Log.i("RadioButton", rb[i].toString());
+            int id = View.generateViewId();
+            rb[i].setId(id);
 
             rg.addView(rb[i]);
         }
