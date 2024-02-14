@@ -19,7 +19,7 @@
             android:name=".QuestionnaireActivity"
             android:exported="false"
             android:label="@string/title_activity_questionnaire"
-            android:theme="@style/Theme.ApplicationQuestionnaireSGMU" />
+            android:theme="@style/MaterialTheme" />
 
         <meta-data
             android:name="com.google.android.actions"

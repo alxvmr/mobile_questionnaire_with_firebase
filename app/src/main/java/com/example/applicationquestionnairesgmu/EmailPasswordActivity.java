@@ -37,7 +37,7 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
                     // User is signed in
                     // проверка на то, что юзер является админом
                     // ...
-                    Intent intent = new Intent(EmailPasswordActivity.this, QuestionnaireActivity.class);
+                    Intent intent = new Intent(EmailPasswordActivity.this, MenuActivity.class);
                     startActivity(intent);
                 }
                 else {
@@ -54,7 +54,7 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
 
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null){
-            Intent intent = new Intent(EmailPasswordActivity.this, QuestionnaireActivity.class);
+            Intent intent = new Intent(EmailPasswordActivity.this, MenuActivity.class);
             startActivity(intent);
         }
 
@@ -76,7 +76,7 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
             public void onComplete(@androidx.annotation.NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(EmailPasswordActivity.this, "Авторизация успешна", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(EmailPasswordActivity.this, QuestionnaireActivity.class);
+                    Intent intent = new Intent(EmailPasswordActivity.this, MenuActivity.class);
                     startActivity(intent);
                 }
                 else{
