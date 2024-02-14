@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:text="Анкета"
                 android:id="@+id/Header"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textColor="@color/purple"
@@ -85,45 +85,6 @@
                         android:text="Текст_вопроса"
                         android:id="@+id/card_1_question"/>
                 </LinearLayout>
-
-<!--                <RadioGroup-->
-<!--                    android:id="@+id/radioGroup"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical">-->
-<!--                    <RadioButton-->
-<!--                        android:id="@+id/radio_1"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginLeft="10dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="До 6 часов"-->
-<!--                        android:buttonTint="@color/purple"/>-->
-<!--                    <RadioButton-->
-<!--                        android:id="@+id/radio_2"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginLeft="10dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="7 - 24 часа(-ов)"-->
-<!--                        android:buttonTint="@color/purple"/>-->
-<!--                    <RadioButton-->
-<!--                        android:id="@+id/radio_3"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginLeft="10dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="2-е сутки"-->
-<!--                        android:buttonTint="@color/purple"/>-->
-<!--                    <RadioButton-->
-<!--                        android:id="@+id/radio_4"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginLeft="10dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="Свыше 2-х суток"-->
-<!--                        android:buttonTint="@color/purple"/>-->
-<!--                </RadioGroup>-->
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -1387,60 +1348,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-<!--        <androidx.cardview.widget.CardView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginLeft="30dp"-->
-<!--            android:layout_marginRight="30dp"-->
-<!--            android:layout_marginBottom="30dp"-->
-<!--            app:cardCornerRadius="30dp"-->
-<!--            app:cardElevation="20dp"-->
-<!--            android:background="@drawable/custom_edittext">-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical"-->
-<!--                android:layout_gravity="center_vertical"-->
-<!--                android:padding="24dp">-->
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:paddingBottom="10dp">-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="2"-->
-<!--                        android:id="@+id/q2"-->
-<!--                        android:textSize="20sp"-->
-<!--                        android:textAlignment="textStart"-->
-<!--                        android:textStyle="bold"-->
-<!--                        android:paddingRight="7dp"-->
-<!--                        android:textColor="@color/purple"/>-->
-<!--                    <TextView-->
-<!--                        android:gravity="center_horizontal"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:textSize="17sp"-->
-<!--                        android:textStyle="bold"-->
-<!--                        android:text="Пульс"/>-->
-<!--                </LinearLayout>-->
-<!--                    <EditText-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="35dp"-->
-<!--                        android:id="@+id/puls"-->
-<!--                        android:background="@drawable/custom_edittext"-->
-<!--                        android:drawablePadding="8dp"-->
-<!--                        android:hint="Введите значение"-->
-<!--                        android:layout_marginLeft="10dp"-->
-<!--                        android:textSize="15sp"-->
-<!--                        android:padding="8dp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textColorHighlight="@color/cardview_dark_background"-->
-<!--                        android:layout_marginTop="10dp"/>-->
-
-<!--            </LinearLayout>-->
-<!--        </androidx.cardview.widget.CardView>-->
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -1453,6 +1360,7 @@
             android:id="@+id/button_send"
             android:textStyle="bold"
             android:textColor="@color/white"
+            app:backgroundTint="@color/purple"
             android:text="Отправить"/>
     </LinearLayout>
 </ScrollView>

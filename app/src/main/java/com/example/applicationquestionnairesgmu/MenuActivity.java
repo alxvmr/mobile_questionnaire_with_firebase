@@ -22,7 +22,9 @@ public class MenuActivity extends AppCompatActivity {
 
         Button button_anketa = (Button)findViewById(R.id.btn_anketa);
         Button button_exit = (Button)findViewById(R.id.btn_exit);
+        Button button_change_pswd = (Button)findViewById(R.id.btn_change_pswd);
         Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
+
         button_anketa.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,6 +43,14 @@ public class MenuActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(MenuActivity.this, EmailPasswordActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
+        button_change_pswd.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this, ChangePasswordActivity.class);
                 startActivity(intent);
             }
         });
