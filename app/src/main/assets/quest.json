@@ -1,6 +1,17 @@
 [
  {
   "number_quest":1,
+  "quest_text":"ФИО пациента",
+  "answers":[
+   {
+    "number_answer":0,
+    "text":"Input_field"
+   }
+  ]
+ },
+
+ {
+  "number_quest":2,
   "quest_text":"Длительность кровотечения",
   "answers":[
    {
@@ -23,7 +34,7 @@
  },
 
  {
-  "number_quest":2,
+  "number_quest":3,
   "quest_text":"Анамнез",
   "answers":[
    {
@@ -54,7 +65,7 @@
  },
 
  {
-  "number_quest":3,
+  "number_quest":4,
   "quest_text":"Операции в анамнезе",
   "answers":[
    {
@@ -77,7 +88,7 @@
  },
 
  {
-  "number_quest":4,
+  "number_quest":5,
   "quest_text":"Способствующие факторы",
   "answers":[
    {
@@ -100,7 +111,7 @@
  },
 
  {
-  "number_quest":5,
+  "number_quest":6,
   "quest_text":"Рвота кровью",
   "answers":[
    {
@@ -119,7 +130,7 @@
  },
 
  {
-  "number_quest":6,
+  "number_quest":7,
   "quest_text":"Мелена",
   "answers":[
    {
@@ -142,7 +153,7 @@
  },
 
  {
-  "number_quest":7,
+  "number_quest":8,
   "quest_text":"Коллапс",
   "answers":[
    {
@@ -161,7 +172,7 @@
  },
 
  {
-  "number_quest":8,
+  "number_quest":9,
   "quest_text":"Потеря сознания",
   "answers":[
    {
@@ -180,7 +191,7 @@
  },
 
  {
-  "number_quest":9,
+  "number_quest":10,
   "quest_text":"Лечебные мероприятия до настоящего осмотра",
   "answers":[
    {
@@ -199,7 +210,7 @@
  },
 
  {
-  "number_quest":10,
+  "number_quest":11,
   "quest_text":"Состояние больного во время осмотра",
   "answers":[
    {
@@ -218,7 +229,7 @@
  },
 
  {
-  "number_quest":11,
+  "number_quest":12,
   "quest_text":"Пульс",
   "answers":[
    {
@@ -229,7 +240,7 @@
  },
 
  {
-  "number_quest":12,
+  "number_quest":13,
   "quest_text":"АД",
   "answers":[
    {
@@ -240,7 +251,7 @@
  },
 
  {
-  "number_quest":13,
+  "number_quest":14,
   "quest_text":"ДЦК",
   "answers":[
    {
@@ -251,7 +262,7 @@
  },
 
  {
-  "number_quest":14,
+  "number_quest":15,
   "quest_text":"ДЦК не определяли?",
   "answers":[
    {
@@ -266,7 +277,7 @@
  },
 
  {
-  "number_quest":15,
+  "number_quest":16,
   "quest_text":"Эритроциты",
   "answers":[
    {
@@ -277,7 +288,7 @@
  },
 
  {
-  "number_quest":16,
+  "number_quest":17,
   "quest_text":"Гемоглобин",
   "answers":[
    {
@@ -288,7 +299,7 @@
  },
 
  {
-  "number_quest":17,
+  "number_quest":18,
   "quest_text":"Локализация язвы",
   "answers":[
    {
@@ -319,7 +330,7 @@
  },
 
  {
-  "number_quest":18,
+  "number_quest":19,
   "quest_text":"Размер язвы",
   "answers":[
    {
@@ -330,7 +341,7 @@
  },
 
  {
-  "number_quest":19,
+  "number_quest":20,
   "quest_text":"Состояние язвенной поверхности",
   "answers":[
    {
@@ -361,7 +372,7 @@
  },
 
  {
-  "number_quest":20,
+  "number_quest":21,
   "quest_text":"Содержимое желудка и 12-ти перстной кишки",
   "answers":[
    {
@@ -392,7 +403,7 @@
  },
 
  {
-  "number_quest":21,
+  "number_quest":22,
   "quest_text":"Деформация привратника и 12-ти перстной кишки",
   "answers":[
    {
@@ -407,7 +418,7 @@
  },
 
  {
-  "number_quest":22,
+  "number_quest":23,
   "quest_text":"Группа крови",
   "answers":[
    {
@@ -430,7 +441,7 @@
  },
 
  {
-  "number_quest":23,
+  "number_quest":24,
   "quest_text":"Частота дыхания",
   "answers":[
    {
@@ -441,7 +452,7 @@
  },
 
  {
-  "number_quest":24,
+  "number_quest":25,
   "quest_text":"Тяжесть кровопотери",
   "answers":[
    {
@@ -460,7 +471,7 @@
  },
 
  {
-  "number_quest":25,
+  "number_quest":26,
   "quest_text":"Степень активности кровотечения",
   "answers":[
    {
@@ -495,7 +506,7 @@
  },
 
  {
-  "number_quest":26,
+  "number_quest":27,
   "quest_text":"Сопутствующая патология",
   "answers":[
    {
@@ -514,7 +525,7 @@
  },
 
  {
-  "number_quest":27,
+  "number_quest":28,
   "quest_text":"Возраст",
   "answers":[
    {
@@ -545,7 +556,7 @@
  },
 
  {
-  "number_quest":28,
+  "number_quest":29,
   "quest_text":"Пол",
   "answers":[
    {

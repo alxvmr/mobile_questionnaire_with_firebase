@@ -71,6 +71,10 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
     }
 
     public void signin(String email, String password){
+        if (email.length()==0 || password.length()==0){
+            Toast.makeText(EmailPasswordActivity.this, "Заполните все поля", Toast.LENGTH_SHORT).show();
+            return;
+        }
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@androidx.annotation.NonNull Task<AuthResult> task) {

@@ -43,8 +43,7 @@ android:fillViewport="true">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp">
+                    android:orientation="horizontal">
                     <TextView
                         android:gravity="left"
                         android:layout_weight="1"
@@ -55,7 +54,7 @@ android:fillViewport="true">
                         android:text="Заполнить анкету"
                         android:drawableLeft="@drawable/ic_baseline_arrow_right_alt_24"
                         android:drawablePadding="5dp"
-                        android:id="@+id/card_1_question"/>
+                        android:id="@+id/card_1_menu"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -63,8 +62,49 @@ android:fillViewport="true">
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:onClick="goQuestionnaire"/>
+                android:id="@+id/btn_anketa"/>
+        </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="20dp"
+            android:background="@drawable/custom_edittext"
+            android:id="@+id/card_2">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                android:padding="24dp"
+                android:id="@+id/ll_2">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:gravity="left"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:text="Выйти"
+                        android:drawableLeft="@drawable/ic_baseline_exit_to_app_24"
+                        android:drawablePadding="5dp"
+                        android:id="@+id/card_2_menu"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:id="@+id/btn_exit"/>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 </ScrollView>
