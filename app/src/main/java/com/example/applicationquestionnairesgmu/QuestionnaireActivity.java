@@ -2,34 +2,26 @@ package com.example.applicationquestionnairesgmu;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class QuestionnaireActivity extends AppCompatActivity {
@@ -38,6 +30,8 @@ public class QuestionnaireActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private List<String> surveyAnsw; // список ответов анкеты
     private String pathQuest = "quest.json";
+    // данные анкеты - id_вопроса, номер_вопроса, начало нумерации(0, 1, -1 (если поле ввода)), ответ
+    private List<HashMap<String,Integer>> anketa_data = new ArrayList<HashMap<String,Integer>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +45,13 @@ public class QuestionnaireActivity extends AppCompatActivity {
             // генерация Activity
             List<Question> qList = Arrays.asList(parsingQuest.questions);
             for (Question q : qList){
+                HashMap<String, Integer> question_data = new HashMap<>();
+
                 Integer number_question = q.number_quest;
                 String question_text = q.quest_text;
+
+                question_data.put("number_question", number_question);
+                question_data.put("number_answ", -1); // ответа на вопрос еще нет
 
                 String tvID = "card_" + number_question.toString() + "_question";
                 int resID = getResources().getIdentifier(tvID, "id", getPackageName());
@@ -63,11 +62,16 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 int resLLID = getResources().getIdentifier(llID, "id", getPackageName());
                 LinearLayout layout = (LinearLayout) findViewById(resLLID);
                 if (q.answers.size() > 1){ // radio-button
-                    createRadioButton(q.answers, layout, number_question);
+                    // определение начала нумерации
+                    question_data.put("start_num", q.answers.get(0).number_answer);
+                    createRadioButton(q.answers, layout, question_data);
                 }
                 else if (q.answers.size() == 1){ // edit text
-                    createEditText(layout, number_question);
+                    question_data.put("start_num", -1); // поле ввода без выбора
+                    createEditText(layout, question_data);
                 }
+
+                anketa_data.add(question_data);
             }
 
         } catch (IOException e) {
@@ -82,9 +86,19 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //RadioGroup rg_card_1 = findViewById(R.id.radios);
+
+        Button button_send_answers = (Button) findViewById(R.id.button_send);
+        button_send_answers.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                send_answers();
+            }
+        });
     }
 
-    private void createRadioButton(List<Answer> answersList, LinearLayout  layout, Integer card_number) {
+    private void createRadioButton(List<Answer> answersList, LinearLayout  layout, HashMap<String, Integer> q_data) {
         int count = answersList.size();
         final RadioButton[] rb = new RadioButton[count];
 
@@ -93,6 +107,9 @@ public class QuestionnaireActivity extends AppCompatActivity {
         rg.setLayoutParams(new RadioGroup.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
+        int rg_id = View.generateViewId();
+        rg.setId(rg_id);
+        q_data.put("id", rg_id);
 
         for(Integer i=0; i<count; i++){
             rb[i]  = new RadioButton(this);
@@ -106,7 +123,6 @@ public class QuestionnaireActivity extends AppCompatActivity {
 
             int id = View.generateViewId();
             rb[i].setId(id);
-
             rg.addView(rb[i]);
         }
 
@@ -114,7 +130,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
     }
 
     @SuppressLint("ResourceAsColor")
-    private void createEditText(LinearLayout layout, Integer card_number){
+    private void createEditText(LinearLayout layout, HashMap<String, Integer> q_data){
         EditText editText = new EditText(this);
         int height = (int) getResources().getDimension(R.dimen.edit_text_height);
 
@@ -130,8 +146,9 @@ public class QuestionnaireActivity extends AppCompatActivity {
         editText.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
         editText.setTextColor(R.color.black);
         //editText.getBackground().mutate().setColorFilter(R.color.cardview_dark_background), PorterDuff.Mode.SRC_ATOP);
-        int id = View.generateViewId();
-        editText.setId(id);
+        int et_id = View.generateViewId();
+        editText.setId(et_id);
+        q_data.put("id", et_id);
 
         layout.addView(editText);
     }
@@ -144,5 +161,9 @@ public class QuestionnaireActivity extends AppCompatActivity {
     public static int pxToDp(int px)
     {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
+    }
+
+    private void send_answers(){
+
     }
 }
