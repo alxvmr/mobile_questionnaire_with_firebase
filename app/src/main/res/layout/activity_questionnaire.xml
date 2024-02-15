@@ -83,7 +83,7 @@
                         android:textSize="17sp"
                         android:textStyle="bold"
                         android:text="Текст_вопроса"
-                        android:id="@+id/card_1_question"/>
+                        android:id="@+id/card_1_question" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>

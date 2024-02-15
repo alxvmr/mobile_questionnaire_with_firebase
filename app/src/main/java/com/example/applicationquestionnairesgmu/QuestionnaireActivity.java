@@ -1,11 +1,15 @@
 package com.example.applicationquestionnairesgmu;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.text.Layout;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class QuestionnaireActivity extends AppCompatActivity {
 
@@ -51,7 +58,6 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 String question_text = q.quest_text;
 
                 question_data.put("number_question", number_question);
-                question_data.put("number_answ", -1); // ответа на вопрос еще нет
 
                 String tvID = "card_" + number_question.toString() + "_question";
                 int resID = getResources().getIdentifier(tvID, "id", getPackageName());
@@ -93,7 +99,18 @@ public class QuestionnaireActivity extends AppCompatActivity {
         button_send_answers.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View view) {
-                send_answers();
+                HashMap<Integer, String> answers = get_answers();
+                List<Integer> empty_num_q = get_empty_questions(answers);
+                if (empty_num_q.size() != 0){
+                    // меняем цвет незаполненных вопросов
+                    for (Integer num : empty_num_q){
+                        change_color_question(num);
+                    }
+                    Toast.makeText(QuestionnaireActivity.this, "Заполните все вопросы", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    // отправляем данные в БД
+                }
             }
         });
     }
@@ -145,7 +162,6 @@ public class QuestionnaireActivity extends AppCompatActivity {
         editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
         editText.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
         editText.setTextColor(R.color.black);
-        //editText.getBackground().mutate().setColorFilter(R.color.cardview_dark_background), PorterDuff.Mode.SRC_ATOP);
         int et_id = View.generateViewId();
         editText.setId(et_id);
         q_data.put("id", et_id);
@@ -163,7 +179,50 @@ public class QuestionnaireActivity extends AppCompatActivity {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
     }
 
-    private void send_answers(){
+    private HashMap<Integer, String> get_answers(){
+        HashMap<Integer, String> answers = new HashMap<Integer, String>();
+        for (HashMap<String, Integer> question : anketa_data){
+            int start_num = question.get("start_num");
+            if (start_num != -1) { // если это radio group
+                int rg_id = question.get("id");
+                RadioGroup rg = (RadioGroup) findViewById(rg_id);
+                int rb_checked_id = rg.getCheckedRadioButtonId();
+                View rb_checked = rg.findViewById(rb_checked_id);
+                Integer index = rg.indexOfChild(rb_checked);
+                if (index != -1) {
+                    if (start_num == 0) {
+                        answers.put(question.get("number_question"), index.toString());
+                    } else {
+                        index += 1;
+                        answers.put(question.get("number_question"), index.toString());
+                    }
+                }
+                else{
+                    answers.put(question.get("number_question"), "-1");
+                }
+            }
+            else { // это editText
+                int et_id = question.get("id");
+                EditText et = (EditText) findViewById(et_id);
+                answers.put(question.get("number_question"), et.getText().toString());
+            }
+        }
+        return answers;
+    }
+    private List<Integer> get_empty_questions(HashMap<Integer, String> answers){
+        List<Integer> res = new ArrayList<Integer>();
+        for (Map.Entry<Integer, String> a : answers.entrySet()){
+            if (Objects.equals(a.getValue(), "-1") || Objects.equals(a.getValue(), "")){
+                res.add(a.getKey());
+            }
+        }
+        return res;
+    }
 
+    private void change_color_question(Integer num_q){
+        String id_card = "ll_"+num_q.toString();
+        int id_card_int = getResources().getIdentifier(id_card, "id", getPackageName());
+        LinearLayout ll = (LinearLayout) findViewById(id_card_int);
+        ll.setBackgroundColor(ContextCompat.getColor(this, R.color.empty_answer));
     }
 }

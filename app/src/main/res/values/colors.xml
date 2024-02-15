@@ -16,5 +16,6 @@
 
     <color name="purple">#8692f7</color>
     <color name="cardview_dark_background">#FF202020</color>
+    <color name="empty_answer">#4DF78686</color>
 
 </resources>
