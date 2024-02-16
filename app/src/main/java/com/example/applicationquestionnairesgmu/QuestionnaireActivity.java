@@ -100,11 +100,17 @@ public class QuestionnaireActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 HashMap<Integer, String> answers = get_answers();
-                List<Integer> empty_num_q = get_empty_questions(answers);
+                HashMap<String, List<Integer>> ef_question = get_empty_filled_questions(answers);
+                List<Integer> empty_num_q = ef_question.get("empty");
+                List<Integer> filled_num_q = ef_question.get("filled");
                 if (empty_num_q.size() != 0){
                     // меняем цвет незаполненных вопросов
                     for (Integer num : empty_num_q){
-                        change_color_question(num);
+                        change_color_question_empty(num);
+                    }
+                    // меняем цвет заполненных ответов
+                    for (Integer num : filled_num_q){
+                        change_color_question_filled(num);
                     }
                     Toast.makeText(QuestionnaireActivity.this, "Заполните все вопросы", Toast.LENGTH_SHORT).show();
                 }
@@ -209,20 +215,34 @@ public class QuestionnaireActivity extends AppCompatActivity {
         }
         return answers;
     }
-    private List<Integer> get_empty_questions(HashMap<Integer, String> answers){
-        List<Integer> res = new ArrayList<Integer>();
+    private HashMap<String, List<Integer>> get_empty_filled_questions(HashMap<Integer, String> answers){
+        HashMap<String, List<Integer>> res = new HashMap<String, List<Integer>>();
+        List<Integer> res_empty = new ArrayList<Integer>();
+        List<Integer> res_filled = new ArrayList<Integer>();
         for (Map.Entry<Integer, String> a : answers.entrySet()){
             if (Objects.equals(a.getValue(), "-1") || Objects.equals(a.getValue(), "")){
-                res.add(a.getKey());
+                res_empty.add(a.getKey());
+            }
+            else{
+                res_filled.add(a.getKey());
             }
         }
+        res.put("empty", res_empty);
+        res.put("filled", res_filled);
         return res;
     }
 
-    private void change_color_question(Integer num_q){
+    private void change_color_question_empty(Integer num_q){
         String id_card = "ll_"+num_q.toString();
         int id_card_int = getResources().getIdentifier(id_card, "id", getPackageName());
         LinearLayout ll = (LinearLayout) findViewById(id_card_int);
         ll.setBackgroundColor(ContextCompat.getColor(this, R.color.empty_answer));
+    }
+
+    private void change_color_question_filled(Integer num_q){
+        String id_card = "ll_"+num_q.toString();
+        int id_card_int = getResources().getIdentifier(id_card, "id", getPackageName());
+        LinearLayout ll = (LinearLayout) findViewById(id_card_int);
+        ll.setBackgroundColor(ContextCompat.getColor(this, R.color.white));
     }
 }
