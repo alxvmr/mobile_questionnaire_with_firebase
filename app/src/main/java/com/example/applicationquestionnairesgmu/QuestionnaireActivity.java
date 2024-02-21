@@ -43,7 +43,6 @@ public class QuestionnaireActivity extends AppCompatActivity {
 
     private String pathQuest = "quest.json"; // данные анкеты - id_вопроса, номер_вопроса, начало нумерации(0, 1, -1 (если поле ввода)), ответ
     private List<HashMap<String,Integer>> anketa_data = new ArrayList<HashMap<String,Integer>>();
-    private Integer number = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,10 +121,10 @@ public class QuestionnaireActivity extends AppCompatActivity {
                     // отправляем данные в БД
                     myRef = FirebaseDatabase.getInstance().getReference();
                     DatabaseReference usersRef = myRef.child(user.getUid());
-                    HashMap<String, HashMap<String, String>> row = new HashMap<>();
-                    row.put(number.toString(), answers);
-                    usersRef.push().setValue(row);
-                    number += 1;
+                    usersRef.push().setValue(answers);
+
+                    Intent intent = new Intent(QuestionnaireActivity.this, MenuActivity.class);
+                    startActivity(intent);
                 }
             }
         });
