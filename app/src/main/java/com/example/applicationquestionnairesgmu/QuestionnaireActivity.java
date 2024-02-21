@@ -1,4 +1,5 @@
 package com.example.applicationquestionnairesgmu;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
@@ -20,8 +21,11 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,13 +37,13 @@ import java.util.Objects;
 
 public class QuestionnaireActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();;
     private DatabaseReference myRef;
-    private List<String> surveyAnsw; // список ответов анкеты
-    private String pathQuest = "quest.json";
-    // данные анкеты - id_вопроса, номер_вопроса, начало нумерации(0, 1, -1 (если поле ввода)), ответ
-    private List<HashMap<String,Integer>> anketa_data = new ArrayList<HashMap<String,Integer>>();
+    FirebaseUser user = mAuth.getCurrentUser();
 
+    private String pathQuest = "quest.json"; // данные анкеты - id_вопроса, номер_вопроса, начало нумерации(0, 1, -1 (если поле ввода)), ответ
+    private List<HashMap<String,Integer>> anketa_data = new ArrayList<HashMap<String,Integer>>();
+    private Integer number = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +103,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
         button_send_answers.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View view) {
-                HashMap<Integer, String> answers = get_answers();
+                HashMap<String, String> answers = get_answers();
                 HashMap<String, List<Integer>> ef_question = get_empty_filled_questions(answers);
                 List<Integer> empty_num_q = ef_question.get("empty");
                 List<Integer> filled_num_q = ef_question.get("filled");
@@ -116,6 +120,12 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 }
                 else{
                     // отправляем данные в БД
+                    myRef = FirebaseDatabase.getInstance().getReference();
+                    DatabaseReference usersRef = myRef.child(user.getUid());
+                    HashMap<String, HashMap<String, String>> row = new HashMap<>();
+                    row.put(number.toString(), answers);
+                    usersRef.push().setValue(row);
+                    number += 1;
                 }
             }
         });
@@ -185,8 +195,8 @@ public class QuestionnaireActivity extends AppCompatActivity {
         return (int) (px / Resources.getSystem().getDisplayMetrics().density);
     }
 
-    private HashMap<Integer, String> get_answers(){
-        HashMap<Integer, String> answers = new HashMap<Integer, String>();
+    private HashMap<String, String> get_answers(){
+        HashMap<String, String> answers = new HashMap<String, String>();
         for (HashMap<String, Integer> question : anketa_data){
             int start_num = question.get("start_num");
             if (start_num != -1) { // если это radio group
@@ -197,34 +207,34 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 Integer index = rg.indexOfChild(rb_checked);
                 if (index != -1) {
                     if (start_num == 0) {
-                        answers.put(question.get("number_question"), index.toString());
+                        answers.put(question.get("number_question").toString(), index.toString());
                     } else {
                         index += 1;
-                        answers.put(question.get("number_question"), index.toString());
+                        answers.put(question.get("number_question").toString(), index.toString());
                     }
                 }
                 else{
-                    answers.put(question.get("number_question"), "-1");
+                    answers.put(question.get("number_question").toString(), "-1");
                 }
             }
             else { // это editText
                 int et_id = question.get("id");
                 EditText et = (EditText) findViewById(et_id);
-                answers.put(question.get("number_question"), et.getText().toString());
+                answers.put(question.get("number_question").toString(), et.getText().toString());
             }
         }
         return answers;
     }
-    private HashMap<String, List<Integer>> get_empty_filled_questions(HashMap<Integer, String> answers){
+    private HashMap<String, List<Integer>> get_empty_filled_questions(HashMap<String, String> answers){
         HashMap<String, List<Integer>> res = new HashMap<String, List<Integer>>();
         List<Integer> res_empty = new ArrayList<Integer>();
         List<Integer> res_filled = new ArrayList<Integer>();
-        for (Map.Entry<Integer, String> a : answers.entrySet()){
+        for (Map.Entry<String, String> a : answers.entrySet()){
             if (Objects.equals(a.getValue(), "-1") || Objects.equals(a.getValue(), "")){
-                res_empty.add(a.getKey());
+                res_empty.add(Integer.parseInt(a.getKey()));
             }
             else{
-                res_filled.add(a.getKey());
+                res_filled.add(Integer.parseInt(a.getKey()));
             }
         }
         res.put("empty", res_empty);
