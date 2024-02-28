@@ -63,7 +63,7 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.btn_sign_in){
-            signin(ETemail.getText().toString(), ETpassword.getText().toString());
+            signin(ETemail.getText().toString().trim(), ETpassword.getText().toString());
         }
 //        else if (view.getId() == R.id.btn_registration){
 //            registration(ETemail.getText().toString(), ETpassword.getText().toString());
