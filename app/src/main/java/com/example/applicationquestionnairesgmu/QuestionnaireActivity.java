@@ -3,11 +3,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.loader.content.AsyncTaskLoader;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Layout;
@@ -42,50 +44,88 @@ public class QuestionnaireActivity extends AppCompatActivity {
     FirebaseUser user = mAuth.getCurrentUser();
 
     private String pathQuest = "quest.json"; // данные анкеты - id_вопроса, номер_вопроса, начало нумерации(0, 1, -1 (если поле ввода)), ответ
-    private List<HashMap<String,Integer>> anketa_data = new ArrayList<HashMap<String,Integer>>();
+    private ArrayList<HashMap<String,Integer>> anketa_data = new ArrayList<HashMap<String,Integer>>();
+
+    LinearLayout LLoader;
+    LinearLayout LQuest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire);
 
-        // считывание вопросов анкеты из json
-        try {
-            ParsingQuestJSON parsingQuest = new ParsingQuestJSON(pathQuest, getApplicationContext());
+        LLoader = (LinearLayout)findViewById(R.id.layout_loader);
+        LQuest = (LinearLayout)findViewById(R.id.layout_quest);
 
-            // генерация Activity
-            List<Question> qList = Arrays.asList(parsingQuest.questions);
-            for (Question q : qList){
-                HashMap<String, Integer> question_data = new HashMap<>();
+        LQuest.setVisibility(View.GONE);
+        LLoader.setVisibility(View.VISIBLE);
 
-                Integer number_question = q.number_quest;
-                String question_text = q.quest_text;
+        new Thread(new Runnable() {
+            public void run(){
+                // считывание вопросов анкеты из json
+                try {
+                    ParsingQuestJSON parsingQuest = new ParsingQuestJSON(pathQuest, getApplicationContext());
 
-                question_data.put("number_question", number_question);
+                    // генерация Activity
+                    List<Question> qList = Arrays.asList(parsingQuest.questions);
+                    for (Question q : qList){
+                        HashMap<String, Integer> question_data = new HashMap<>();
 
-                String tvID = "card_" + number_question.toString() + "_question";
-                int resID = getResources().getIdentifier(tvID, "id", getPackageName());
-                TextView tv = (TextView) findViewById(resID);
-                tv.setText(question_text);
+                        Integer number_question = q.number_quest;
+                        String question_text = q.quest_text;
 
-                String llID = "ll_" + number_question.toString();
-                int resLLID = getResources().getIdentifier(llID, "id", getPackageName());
-                LinearLayout layout = (LinearLayout) findViewById(resLLID);
-                if (q.answers.size() > 1){ // radio-button
-                    // определение начала нумерации
-                    question_data.put("start_num", q.answers.get(0).number_answer);
-                    createRadioButton(q.answers, layout, question_data);
+                        question_data.put("number_question", number_question);
+
+                        String tvID = "card_" + number_question.toString() + "_question";
+                        int resID = getResources().getIdentifier(tvID, "id", getPackageName());
+                        TextView tv = (TextView) findViewById(resID);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                tv.setText(question_text);
+                            }
+                        });
+
+                        String llID = "ll_" + number_question.toString();
+                        int resLLID = getResources().getIdentifier(llID, "id", getPackageName());
+                        LinearLayout layout = (LinearLayout) findViewById(resLLID);
+                        if (q.answers.size() > 1){ // radio-button
+                            // определение начала нумерации
+                            question_data.put("start_num", q.answers.get(0).number_answer);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    createRadioButton(q.answers, layout, question_data);
+                                }
+                            });
+                        }
+                        else if (q.answers.size() == 1){ // edit text
+                            question_data.put("start_num", -1); // поле ввода без выбора
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    createEditText(layout, question_data);
+                                }
+                            });
+                        }
+                        anketa_data.add(question_data);
+                    }
+                    Thread.sleep(3000);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            LQuest.setVisibility(View.VISIBLE);
+                            LLoader.setVisibility(View.GONE);
+                        }
+                    });
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
-                else if (q.answers.size() == 1){ // edit text
-                    question_data.put("start_num", -1); // поле ввода без выбора
-                    createEditText(layout, question_data);
-                }
-
-                anketa_data.add(question_data);
             }
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        }).start();
 
         Button button_back = (Button)findViewById(R.id.btn_back);
         button_back.setOnClickListener(new Button.OnClickListener() {

@@ -13,9 +13,14 @@
         android:theme="@style/Theme.ApplicationQuestionnaireSGMU"
         tools:targetApi="31">
         <activity
+            android:name=".LoaderActivity"
+            android:exported="false"
+            android:label="@string/title_activity_loader"
+            android:theme="@style/Theme.ApplicationQuestionnaireSGMU" />
+        <activity
             android:name=".ChangePasswordActivity"
             android:exported="false"
-            android:theme="@style/MaterialTheme"/>
+            android:theme="@style/MaterialTheme" />
         <activity
             android:name=".MenuActivity"
             android:exported="false" />

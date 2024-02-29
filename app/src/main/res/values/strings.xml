@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ApplicationQuestionnaireSGMU</string>
     <string name="title_activity_questionnaire">QuestionnaireActivity</string>
+    <string name="title_activity_loader">LoaderActivity</string>
 </resources>
