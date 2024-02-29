@@ -192,6 +192,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
             rb[i].setPadding(10, 0, 0, 0);
             rb[i].setButtonTintList(ColorStateList.valueOf(getColor(R.color.purple)));
             rb[i].setText(answersList.get(i).text);
+            rb[i].setTextColor(ColorStateList.valueOf(getColor(R.color.black)));
 
             int id = View.generateViewId();
             rb[i].setId(id);

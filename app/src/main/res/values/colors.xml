@@ -5,7 +5,7 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    <color name="black">#4d4d4d</color>
     <color name="white">#FFFFFFFF</color>
 
     <color name="colorPrimary">#3F51B5</color>
@@ -14,7 +14,7 @@
     <color name="blue_800">#1565C0</color>
     <color name="grey_50">#FAFAFA</color>
 
-    <color name="purple">#8692f7</color>
+    <color name="purple">#9ea8f9</color>
     <color name="cardview_dark_background">#FF202020</color>
     <color name="empty_answer">#4DF78686</color>
 
